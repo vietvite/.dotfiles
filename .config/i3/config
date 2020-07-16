@@ -1,20 +1,8 @@
 set $mod Mod4
 
 # font pango:Source Code Pro 8
-font pango:DejaVu Sans Mono 10
-# font pango:Fira Code 10
-# exec --no-startup-id xautolock -time 10 -locker blurlock
-
-exec --no-startup-id nm-applet
-
-# Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+# font pango:DejaVu Sans Mono 10
+font pango:Fira Code 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -78,6 +66,15 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+q focus child
 
+# Use pactl to adjust volume in PulseAudio.
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -103,7 +100,7 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
-# move focused container to workspace
+# move to workspace & focus to currently container
 bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2; workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3; workspace number $ws3
@@ -115,7 +112,7 @@ bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $
 bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10; workspace number $ws10
 
-
+# just move currently container to workspace
 bindsym $mod+Control+1 move container to workspace number $ws1
 bindsym $mod+Control+2 move container to workspace number $ws2
 bindsym $mod+Control+3 move container to workspace number $ws3
@@ -127,27 +124,20 @@ bindsym $mod+Control+8 move container to workspace number $ws8
 bindsym $mod+Control+9 move container to workspace number $ws9
 bindsym $mod+Control+0 move container to workspace number $ws10
 
-# Assign default workspace
-assign [class="Chromium"] $ws2
+# assign default workspace
 assign [class="code-oss"] $ws1
+assign [class="Chromium"] $ws2
 assign [class="firefox"] $ws3
-assign [class="Microsoft Teams - Preview"] $ws4
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
@@ -167,17 +157,14 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Contrain focused window
-# floating_maximum_size 1000 x 600
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 #bar {
 #        status_command i3status
 #}
 
+# Default floating at start
 for_window [instance="pulseaudio-equalizer-gtk"] floating enable
-for_window [instance="microsoft teams - preview"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [class="pavucontrol"] floating enable
 
@@ -190,16 +177,14 @@ smart_gaps on
 gaps outer -3
 gaps inner 6
 
-
 # Make the currently focused window a scratchpad
 bindsym $mod+F12 move scratchpad
 
 # Show the first scratchpad window
 bindsym $mod+Shift+F12 scratchpad show
 
-#focus_follows_mouse no
+# focus_follows_mouse no
 # workspace_auto_back_and_forth yes
-
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
@@ -207,23 +192,22 @@ client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-
 client.background       #ffffff
 
+# Auto start apps
 exec_always --no-startup-id sh ~/.fehbg
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id ibus-daemon -d -r
 exec --no-startup-id parcellite
+exec --no-startup-id nm-applet
 
-
+# Screen mode
 bindsym $mod+F6 exec --no-startup-id sh ~/.screenlayout/lap_left.sh
 bindsym $mod+F7 exec --no-startup-id sh ~/.screenlayout/lap_only.sh
 bindsym $mod+F8 exec --no-startup-id sh ~/.screenlayout/hdmi_only.sh
 bindsym $mod+F9 exec --no-startup-id sh ~/.screenlayout/hdmi_left_rotate.sh
-bindsym $mod+F5 exec --no-startup-id sh ~/.screenlayout/nguyen.sh
 
 # Shortkey apps
-
 bindsym $mod+c exec chromium
 bindsym $mod+i exec firefox
 bindsym $mod+o exec firefox --private-window
@@ -231,9 +215,17 @@ bindsym $mod+x exec code
 bindsym $mod+n exec nautilus
 bindsym $mod+p exec termite -e gotop
 bindsym $mod+Shift+z exec poweroff
+
 # Lock screen
 bindsym $mod+m exec --no-startup-id blurlock
 
+# Next workspace even if not exist. Basically used for libinput-gesture
 bindsym $mod+Prior exec ~/.config/i3/wm_prev.sh
 bindsym $mod+Next exec ~/.config/i3/wm_next.sh
+
+# Print screen
 bindsym --release Print exec --no-startup-id scrot '%Y-%m-%d_%H:%M:%S_$wx$h_scrot.png' -e 'mv $f ~/scrot'
+
+# Auto lock screen
+# exec --no-startup-id xautolock -time 10 -locker blurlock
+
