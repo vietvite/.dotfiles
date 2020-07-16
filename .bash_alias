@@ -1,0 +1,87 @@
+#  __        __         _
+#  \ \      / /__  _ __| | _____ _ __   __ _  ___ ___
+#   \ \ /\ / / _ \| '__| |/ / __| '_ \ / _` |/ __/ _ \
+#    \ V  V / (_) | |  |   <\__ \ |_) | (_| | (_|  __/
+#     \_/\_/ \___/|_|  |_|\_\___/ .__/ \__,_|\___\___|
+#                               |_|
+
+# Working project
+# Prefix `r` stand for run
+# Prefix `s` stand for server
+alias mail='cd ~/ws/Email-Managment && vim'
+alias rmail='cd ~/ws/Email-Managment && yarn start'
+alias smail='cd ~/ws/email-management-server && vim'
+alias rsmail='cd ~/ws/email-management-server && yarn dev'
+
+# Pet project
+alias zxc='cd ~/ws/ecommerce-ssr-react && vim'
+alias rzxc='cd ~/ws/ecommerce-ssr-react && yarn dev'
+alias asd='cd ~/ws/ecommerce-ssr-react/client && vim'
+alias rasd='cd ~/ws/ecommerce-ssr-react/client && yarn start'
+
+# Quick interact with node package manager
+alias vp='vim package.json'
+alias yis='yarn install && yarn start'
+alias yi='yarn install'
+alias y='yarn start'
+alias yd='yarn dev'
+alias ys='yarn serve'
+
+# Quick navigate dir
+alias ws='cd ~/ws'
+alias dl='cd ~/Downloads'
+alias b="cd .."
+
+# Git
+alias gst='git status'
+alias gcm='git checkout master'
+alias gcd='git checkout develop'
+alias grl='git reflog'
+alias gd='git diff'
+
+#   ____            _
+#  / ___| _   _ ___| |_ ___ _ __ ___
+#  \___ \| | | / __| __/ _ \ '_ ` _ \
+#   ___) | |_| \__ \ ||  __/ | | | | |
+#  |____/ \__, |___/\__\___|_| |_| |_|
+#         |___/
+
+# Explore dir
+alias l="ls --color"
+alias ll="ls -l --color"
+alias la="ls -al --color"
+alias lh="ls -hl --color"
+alias lah="ls -alh --color"
+
+# View files, not include dir
+alias lf="ls -p --color=always | grep -v /"
+alias llf="ls -pl --color=always | grep -v /"
+alias llaf="ls -pal --color=always | grep -v /"
+# View files, not include dir and human readable file size
+alias llfh="ls -plsh --color=always | grep -v /"
+
+# View usage memory & detail of files sort by desc
+alias dua='du -sch .[!.]* * | sort -h'
+
+# Tree view
+alias t='tree -I "node_modules|.git"'
+alias ta='tree -a -I "node_modules|.git"'
+
+# System package manager
+alias pyu='sudo pacman -Syu'
+alias pS="pacman -Ss "
+#alias pac="pacman -Sql | fzf -m --preview 'pacman -Si {1} | xargs -ro sudo pacman -S '"
+alias pac="pacman -Slq | fzf -m --preview 'cat <(pacman -Si {1}) <(pacman -Fl {1} | awk \"{print $2}\")' | xargs -ro sudo pacman -S"
+alias p="sudo pacman -S "
+
+# Wifi
+alias wl='nmcli dev wifi list'
+alias wn='nmcli dev wifi connect '
+
+# Applications
+alias v='vim'
+alias r='ranger'
+alias rmf='rm -rf'
+
+# Test the network
+alias pg="ping google.com"
