@@ -53,11 +53,12 @@ alias la="ls -al --color"
 alias lh="ls -hl --color"
 alias lah="ls -alh --color"
 
-# View files, not include dir
-alias lf="ls -p --color=always | grep -v /"
-alias llf="ls -pl --color=always | grep -v /"
-alias llaf="ls -pal --color=always | grep -v /"
-# View files, not include dir and human readable file size
+# List only files
+alias lf="ls -p --color | grep -v /"
+alias lfl="ls -pl --color | grep -v /"
+alias lfla="ls -pal --color | grep -v /"
+
+# List only files and file size
 alias llfh="ls -plsh --color=always | grep -v /"
 
 # View usage memory & detail of files sort by desc
