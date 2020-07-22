@@ -1,8 +1,8 @@
 set $mod Mod4
 
 # font pango:Source Code Pro 8
-# font pango:DejaVu Sans Mono 10
-font pango:Fira Code 10
+font pango:DejaVu Sans Mono 10
+# font pango:Fira Code 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

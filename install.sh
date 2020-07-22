@@ -11,3 +11,7 @@ ln -s $PWD/.config/i3/config $HOME/.config/i3/config
 ln -s $PWD/.config/i3/tmux_session.sh $HOME/.config/i3/tmux_session.sh
 ln -s $PWD/.config/i3/wm_next.sh $HOME/.config/i3/wm_next.sh
 ln -s $PWD/.config/i3/wm_prev.sh $HOME/.config/i3/wm_prev.sh
+
+ln -s $PWD/.vimrc $HOME/
+
+ln -s $PWD/.tmux.conf $HOME/
