@@ -3,15 +3,25 @@
 [[ -f /usr/share/fzf/completion.bash ]] && source /usr/share/fzf/completion.bash
 [[ -f /usr/share/fzf/key-bindings.bash ]] && source /usr/share/fzf/key-bindings.bash
 
+# ls-icon instead core ls
+[[ -f /opt/coreutils/bin/ls ]] && alias ls=/opt/coreutils/bin/ls
+
 # Uncomment to enable auto lock screen after few minutes
 # [[ -f ~/.dotfiles/scripts/blurlock ]] && source ~/.dotfiles/scripts/blurlock
 
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
-export PS1="\[\033[38;5;40m\]\u\[$(tput sgr0)\]\[\033[38;5;34m\]@\[$(tput sgr0)\]\[\033[38;5;40m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\] \W \\$ \[$(tput sgr0)\]"
-
-export TERM="xterm-256color"
 export PATH="$PATH:~/.dotnet/tools"
 export DOTNET_ROOT=/opt/dotnet
 export PATH="$PATH:~/.local/bin"
+
+# PS1 theme
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/' | sed 's/^/ /'
+}
+CHOP_COLOR="\[$(tput sgr0)\]"
+COLOR_BLUE="\[\033[38;5;37m\]"
+COLOR_GREEN="\[\033[38;5;112m\]"
+USERNAME_SHORT="\u"
+HOSTNAME_SHORT="\h"
+DIRNAME_BASE="\W"
+export PS1="[$COLOR_BLUE$USERNAME_SHORT@$COLOR_BLUE$HOSTNAME_SHORT$CHOP_COLOR] $DIRNAME_BASE$COLOR_GREEN"'$(parse_git_branch)'"$CHOP_COLOR \$ "
+
