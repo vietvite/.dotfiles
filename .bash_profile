@@ -9,4 +9,4 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export PATH="$PATH:~/.dotnet/tools"
 export DOTNET_ROOT=/opt/dotnet
-export PATH="$PATH:~/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"

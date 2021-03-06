@@ -229,3 +229,5 @@ bindsym --release Print exec --no-startup-id scrot '%Y-%m-%d_%H:%M:%S_$wx$h_scro
 # Auto lock screen
 # exec --no-startup-id xautolock -time 10 -locker blurlock
 
+# Reading book
+bindsym $mod+g exec ~/reading.sh
